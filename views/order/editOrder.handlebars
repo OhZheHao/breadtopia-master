@@ -1,0 +1,118 @@
+<div class="container">
+	<div class="card card-body">
+		<h3>Change Order in Shopping Cart</h3>
+		<form action="" method="post">
+			<div class="form-group">
+				<label class="font-italic" for="title">Product Name</label>
+				<input class="form-control" id="title" name="title" onblur="initialiseTitle()" />
+			</div>
+			<div class="form-group mb-4">
+				<label class="font-italic" for="specialrequest">Special Request</label>
+				<textarea class="form-control" id="specialrequest" name="specialrequest" rows="1" maxlength="2000"></textarea>
+			</div>
+			<div class="col-lg-3">
+				<img id="poster" src="/img/no-image.jpg" alt="Poster" class="border img-thumbnail img-fluid">
+				<input id="posterURL" type="hidden" name="posterURL">
+			</div>
+
+			<div class="form-group">
+				<div class="row mb-2">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+						<label class="font-italic">Date of Delivery</label>
+						<input id="datepicker" width="200" name="dateDelivery" readonly />
+					</div>
+					<div class="col-12 col-sm-12 col-md-12 col-lg-6">
+						<label class="font-italic">Language of receipt</label>
+						<br>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="language" id="langEnglish"
+								value="English" onclick="ensureOneCheck('language', 'languageErr', 'btnSubmit')">
+							<label class="form-check-label" for="englishLang">English</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="language" id="langChinese"
+								value="Chinese" onclick="ensureOneCheck('language', 'languageErr', 'btnSubmit')">
+							<label class="form-check-label" for="chinese">Chinese</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="language" id="langMalay" value="Malay"
+								onclick="ensureOneCheck('language', 'languageErr', 'btnSubmit')">
+							<label class="form-check-label" for="malay">Malay</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="language" id="langTamil" value="Tamil"
+								onclick="ensureOneCheck('language', 'languageErr', 'btnSubmit')">
+							<label class="form-check-label" for="tamil">Tamil</label>
+						</div>
+						<p class="text-danger m-0" id="languageErr" style="display:none">Please select one language
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+						<label class="font-italic">Mode of Delivery</label>
+						<br>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="mail" value="mail" name="modeofdelivery"
+								checked>
+							<label class="form-check-label" for="Mail">Mail</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="hand" value="hand" name="modeofdelivery">
+							<label class="form-check-label" for="Hand Delivery">Hand Delivery</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="vehicle" value="vehicle"
+								name="modeofdelivery">
+							<label class="form-check-label" for="Vehicle Delivery">Vehicle Delivery</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="service" value="service"
+								name="modeofdelivery">
+							<label class="form-check-label" for="Food Delivery Service">Food Delivery Service</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="self" value="self" name="modeofdelivery">
+							<label class="form-check-label" for="Self-Collection">Self-Collection</label>
+						</div>
+					</div>
+					<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+						<label class="font-italic">Quantity</label>
+						<br>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="quantity" id="1" value="1">
+							<label class="form-check-label" for="1">1</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="quantity" id="5" value="5">
+							<label class="form-check-label" for="5">5</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="quantity" id="10" value="10">
+							<label class="form-check-label" for="10">10</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="quantity" id="20" value="20">
+							<label class="form-check-label" for="20">20</label>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	<br>
+	<button id="btnSubmit" type="submit" class="btn btn-primary">Save</button>
+	</form>
+</div>
+</div>
+<script>
+	$('#datepicker').datepicker({
+		format: 'dd/mm/yyyy',
+		uiLibrary: 'bootstrap4',
+		value: moment().format('DD/MM/YYYY'),
+	});
+</script>
+</div>
+</div>
