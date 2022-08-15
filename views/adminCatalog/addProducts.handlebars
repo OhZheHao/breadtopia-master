@@ -1,0 +1,59 @@
+<div class="container">
+	<div class="card card-body">
+		<h3>Add Products admin fr</h3>
+		<form action="" method="post">
+			<div class="row mb-3">
+				<div class="col-lg-9">
+					<div class="form-group">
+						{{!-- Practical 5 Exercise 2: Add a title input text here named 'title'--}}
+						<label class="font-italic" for="item">Item Name</label>
+						<input class="form-control" id="item" name="item" />
+					</div>
+					<div class="form-group mb-4">
+						<label class="font-italic" for="description">Description</label>
+						<textarea class="form-control" id="description" name="description" rows="7"
+							maxlength="2000"></textarea>
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="custom-file mb-2">
+						<input type="file" class="custom-file-input" id="posterUpload" name="posterUpload"
+							accept="image/png,image/jpeg,image/jpg,image/gif">
+						<label class="custom-file-label" for="customFile">Choose File</label>
+					</div>
+					<div class="text-danger small mb-2" id="posterErr" style="display:none"></div>
+					<img id="poster" src="/img/no-image.jpg" alt="Poster" class="border img-thumbnail img-fluid">
+					{{!—- Hidden field to submit URL of poster to the server --}}
+					<input id="posterURL" type="hidden" name="posterURL">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="row mb-2">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+						<label class="font-italic">Date of release</label>
+						<input id="datepicker" width="200" name="dateRelease" readonly />
+					</div>
+					<div class="col-12 col-sm-12 col-md-12 col-lg-6">
+						<label class="font-italic">Price</label>
+						<br>
+						{{!-- Practical 5 Exercise 2: Language radio buttons here named 'language'--}}
+						<input type="number" name="price" id="price" min="0" max="9999" step="any">
+					</div>
+				</div>
+			</div>
+	</div>
+	<br>
+	<button id="btnSubmit" type="submit" class="btn btn-primary">Save
+	</button>
+	</form>
+</div>
+
+
+<script>
+	$('#datepicker').datepicker({
+		format: 'dd/mm/yyyy',
+		uiLibrary: 'bootstrap4',
+		value: moment().format('DD/MM/YYYY'),
+	});
+</script>

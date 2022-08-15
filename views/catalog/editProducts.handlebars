@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="card card-body">
+        <h3>Edit Products</h3>
+        <form action="" method="post">
+            <div class="row mb-3">
+                <div class="col-lg-9">
+                    <div class="form-group">
+                        {{!-- Practical 5 Exercise 2: Add a title input text here named 'title'--}}
+                        <label class="font-italic" for="item">Item Name</label>
+                        <input class="form-control" id="item" name="item" value="{{product.item}}" />
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="font-italic" for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="7"
+                            maxlength="2000">{{product.description}}</textarea>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <img id="poster" src="{{product.posterURL}}" alt="Poster" class="border img-thumbnail img-fluid"
+                        onerror="this.src='/img/no-image.jpg'">
+                    {{!—- Hidden field to submit URL of poster to the server --}}
+                    <input id="posterURL" type="hidden" name="posterURL" value="{{product.posterURL}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row mb-2">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+                        <label class="font-italic">Date of release</label>
+                        <input id="datepicker" width="200" name="dateRelease"
+                            value="{{formatDate product.dateRelease 'DD/MM/YYYY'}}" readonly />
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                        <label class="font-italic">Price</label>
+                        <br>
+                        {{!-- Practical 5 Exercise 2: Language radio buttons here named 'language'--}}
+                        <input type="number" name="price" id="price" min="0" max="9999" step="any"
+                            value="{{product.price}}">
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <br>
+    <button id="btnSubmit" type="submit" class="btn btn-primary">Save
+    </button>
+    </form>
+</div>
+</div>
+
+<script>
+    $('#datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        uiLibrary: 'bootstrap4',
+    });
+</script>
