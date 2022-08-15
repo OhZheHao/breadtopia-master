@@ -14,14 +14,25 @@
 					<a class="nav-link" href="/about">About</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/admin"></a>
+					<a class="nav-link" href="/catalog/listProducts">Catalog</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				{{#if user}}
+				<li class="nav-item">
+					<a href="/adminpage" class="nav-link">Admin Page</a>
+				</li>
 				<li class="nav-item dropdown">
 					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
-						id="navbarDropdownMenuLink">Products</a>
+						id="navbarDropdownMenuLink">Product Management</a>
+					<div class="dropdown-menu">
+						<a href="listProducts" class="dropdown-item">Products</a>
+						<a href="/catalog/addProducts" class="dropdown-item">Add Products</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+						id="navbarDropdownMenuLink">Shopping Cart</a>
 					<div class="dropdown-menu">
 						<a href="/order/ShoppingCart" class="dropdown-item">View Shopping Cart</a>
 						<a href="/order/addVideo" class="dropdown-item">Add to Shopping Cart</a>
