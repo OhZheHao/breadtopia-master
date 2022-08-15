@@ -15,6 +15,7 @@ const Product = db.define('product',
         price: {type: sequelize.DECIMAL},
         dateRelease: { type: Sequelize.DATE },
         posterURL: { type: Sequelize.STRING },
+        quantity: { type: Sequelize.INTEGER},
 
     });
 module.exports = Product;
