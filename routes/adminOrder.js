@@ -19,31 +19,6 @@ router.get('/OrderDatabase', ensureAuthenticated, (req, res) => {
         .catch(err => console.log(err));
 });
 
-router.get('/addVideo', ensureAuthenticated, (req, res) => {
-    res.render('order/addVideo');
-});
-
-router.post('/addVideo', ensureAuthenticated, (req, res) => {
-    let title = req.body.title;
-    let specialrequest = req.body.specialrequest.slice(0, 1999);
-    let dateDelivery = moment(req.body.dateDelivery, 'DD/MM/YYYY');
-    let language = req.body.language.toString();
-    // Multi-value components return array of strings or undefined
-    let quantity = req.body.quantity === undefined ? '' : req.body.quantity.toString();
-    let modeofdelivery = req.body.modeofdelivery;
-    let userId = req.user.id;
-
-    Order.create(
-        { title, specialrequest, modeofdelivery, language, quantity, dateDelivery, userId }
-    )
-        .then((order) => {
-            console.log(order.toJSON());
-            res.redirect('/order/OrderDatabase');
-        })
-        .catch(err => console.log(err))
-});
-
-
 router.get('/editadminOrder/:id', ensureAuthenticated, (req, res) => {
     Order.findByPk(req.params.id)
         .then((order) => {
