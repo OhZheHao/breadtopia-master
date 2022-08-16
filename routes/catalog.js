@@ -26,14 +26,7 @@ router.get('/addProducts', ensureAuthenticated, (req, res) => {
 });
 
 router.post('/addProducts', ensureAuthenticated, (req, res) => {
-    // let title = req.body.title;
-    // let story = req.body.story.slice(0, 1999);
-    // let language = req.body.language.toString();
-    // // Multi-value components return array of strings or undefined
-    // let subtitles = req.body.subtitles === undefined ? '' :
-    //     req.body.subtitles.toString();
-    // let classification = req.body.classification;
-    // let userId = req.user.id;
+
     let item = req.body.item;
     let description = req.body.description;
     let price = req.body.price;
