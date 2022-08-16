@@ -3,6 +3,39 @@
   margin:auto;
 }
 
-.sidebar{
+/* .sidebar{
   margin:0px;
 }
+
+.carousel-item {
+  margin-top: 66px;
+  height: 40rem;
+  background: black;
+  color: white;
+  position: absolute;
+  background-position: center;
+  background-size: cover;
+}
+
+.overlay-image {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-position: center;
+  background-size: cover;
+
+}
+
+.carousel {
+  margin-bottom: 4rem;
+}
+
+.featurette-divider {
+  margin: 5rem;
+}
+
+.carousel-caption {
+  margin-bottom: 15rem;
+} */

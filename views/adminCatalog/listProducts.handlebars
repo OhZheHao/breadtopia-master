@@ -1,0 +1,148 @@
+<body class="bg-dark">
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light text-light">Product Management</h1>
+                <p class="lead text-light">manage all products in catalog</p>
+                <hr class="featurette-divider">
+            </div>
+        </div>
+    </section>
+    {{!-- {{#if products}}
+    <div class="album py-5 text-dark">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {{#each products}}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <a href="{{posterURL}}">
+                            <img src="{{posterURL}}" alt="Poster" class="img-thumbnail img-fluid mb-2"
+                                onerror="this.src='/img/no-image.jpg'" style="max-height:160px">
+                        </a>
+                        <div class="card-body">
+                            <h3>{{item}}</h3>
+                            <div class="mb-3">
+                                {{description}}
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">view</button>
+                                </div>
+                                <small class="text-muted">
+                                    S${{price}}
+                                </small>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-0">
+                                <p class="mb-0">
+                                    <a href="/catalog/editProducts/{{id}}" class="card-link mb-2">
+                                        <i class="fas fa-pencil-alt"></i>
+                                        Edit
+                                    </a>
+                                </p>
+                                <p class="mb-0">
+                                    <a href="/adminCatalog/deleteProducts/{{id}}" class="card-link"
+                                        data-toggle="confirmation" data-title="Confirm delete?">
+                                        <i class="far fa-trash-alt"></i>
+                                        Delete
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+
+            </div>
+        </div>
+    </div>
+    {{/if}} --}}
+
+    {{!-- <div class="container">
+        {{#if products}}
+        <div class="card card-body">
+            <h3 class="text-primary">
+                Products
+            </h3>
+            <h3 class="card border-primary mb-2 w-100 mx-auto">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        {{item}}
+                    </h5>
+                </div>
+            </h3>
+        </div>
+        {{/if}}
+    </div> --}}
+
+
+    <div class="container bg-secondary rounded">
+        <div class="table-wrap">
+            <table class="table text-center">
+                <thead>
+                    <th>ID</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Desc</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                    <th>&nbsp;</th>
+                </thead>
+                {{#if products}}
+                <tbody>
+                    {{#each products}}
+                    <tr class="align-middle alert border-bottom text-center" role="alert">
+                        <td>
+                            {{id}}
+                        </td>
+                        <td>
+                            <img class="img-responsive" src="{{posterURL}}" height="100" width="100" alt="">
+                        </td>
+                        <td>
+                            <div>
+                                <p class="fw-bold">{{item}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <p>
+                                {{description}}
+                            </p>
+                        </td>
+                        <td>
+                            <div class="fw-600">${{price}}</div>
+                        </td>
+                        <td class="d-">
+                            {{quantity}}
+                        </td>
+                        <td class="text-wrap" style="width: 6rem;">
+                            {{formatDate dateRelease 'DD MMM YYYY'}}
+                        </td>
+                        <td>
+                            <p>
+                                <a href="/adminCatalog/editProducts/{{id}}" class="card-link mb-2 text-warning">
+                                    <i class="fas fa-pencil-alt text-warning"></i>
+                                    Edit
+                                </a>
+                                <br>
+                                <a href="/adminCatalog/deleteProducts/{{id}}" class="card-link text-danger"
+                                    data-toggle="confirmation" data-title="Confirm delete?">
+                                    Delete
+                                    <i class="far fa-trash-alt text-danger"></i>
+                                </a>
+                            </p>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                {{/if}}
+            </table>
+        </div>
+    </div>
+
+    <script>
+        $('[data-toggle=confirmation]').confirmation({
+            rootSelector: '[data-toggle=confirmation]',
+        });
+    </script>
+</body>

@@ -16,7 +16,7 @@ router.get('/listProducts', ensureAuthenticated, (req, res) => {
     })
         .then((products) => {
             // pass object to listVideos.handlebar
-            res.render('catalog/listProducts', { products });
+            res.render('adminCatalog/listProducts', { products });
         })
         .catch(err => console.log(err));
 });
@@ -40,17 +40,18 @@ router.post('/addProducts', ensureAuthenticated, (req, res) => {
     let posterURL = req.body.posterURL;
     let dateRelease = moment(req.body.dateRelease, 'DD/MM/YYYY');
     let userId = req.user.id;
+    let quantity = req.body.quantity;
     Product.create(
         {
             item, description, price,
             dateRelease,
             userId,
-            posterURL
+            posterURL, quantity
         }
     )
         .then((product) => {
             console.log(product.toJSON());
-            res.redirect('/catalog/listProducts');
+            res.redirect('/adminCatalog/listProducts');
         })
         .catch(err => console.log(err))
 });
@@ -60,15 +61,15 @@ router.get('/editProducts/:id', ensureAuthenticated, (req, res) => {
         .then((product) => {
             if (!product) {
                 flashMessage(res, 'error', 'Item not found');
-                res.redirect('/catalog/listProducts');
+                res.redirect('/adminCatalog/listProducts');
                 return;
             }
             if (req.user.id != product.userId) {
                 flashMessage(res, 'error', 'Unauthorised access');
-                res.redirect('/catalog/listProducts');
+                res.redirect('/adminCatalog/listProducts');
                 return;
             }
-            res.render('catalog/editProducts', { product });
+            res.render('adminCatalog/editProducts', { product });
         })
         .catch(err => console.log(err));
 });
@@ -78,15 +79,18 @@ router.post('/editProducts/:id', ensureAuthenticated, (req, res) => {
     let description = req.body.description.slice(0, 1999);
     let dateRelease = moment(req.body.dateRelease, 'DD/MM/YYYY');
     let price = req.body.price;
+    let quantity = req.body.quantity;
+    let posterURL = req.body.posterURL;
+
     Product.update(
         {
-            item, description, dateRelease, price
+            item, description, dateRelease, price, quantity, posterURL
         },
         { where: { id: req.params.id } }
     )
         .then((result) => {
             console.log(result[0] + ' item updated');
-            res.redirect('/catalog/listProducts');
+            res.redirect('/adminCatalog/listProducts');
         })
         .catch(err => console.log(err));
 });
@@ -97,17 +101,17 @@ router.get('/deleteProducts/:id', ensureAuthenticated, async function
         let product = await Product.findByPk(req.params.id);
         if (!product) {
             flashMessage(res, 'error', 'Item not found');
-            res.redirect('/catalog/listProducts');
+            res.redirect('/adminCatalog/listProducts');
             return;
         }
         if (req.user.id != product.userId) {
             flashMessage(res, 'error', 'Unauthorised access');
-            res.redirect('/catalog/listProducts');
+            res.redirect('/adminCatalog/listProducts');
             return;
         }
         let result = await Product.destroy({ where: { id: product.id } });
         console.log(result + ' Item deleted');
-        res.redirect('/catalog/listProducts');
+        res.redirect('/adminCatalog/listProducts');
     }
     catch (err) {
         console.log(err);
