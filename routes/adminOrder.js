@@ -14,7 +14,7 @@ router.get('/OrderDatabase', ensureAuthenticated, (req, res) => {
         raw: true
     })
         .then((orders) => {
-            res.render('order/OrderDatabase', { orders });
+            res.render('adminoOrder/OrderDatabase', { orders });
         })
         .catch(err => console.log(err));
 });
@@ -24,15 +24,15 @@ router.get('/editadminOrder/:id', ensureAuthenticated, (req, res) => {
         .then((order) => {
             if (!order) {
                 flashMessage(res, 'error', 'Orders not found');
-                res.redirect('/order/OrderDatabase');
+                res.redirect('/adminOrder/OrderDatabase');
                 return;
             }
             if (req.user.id != order.userId) {
                 flashMessage(res, 'error', 'Unauthorised access');
-                res.redirect('/order/OrderDatabase');
+                res.redirect('/adminOrder/OrderDatabase');
                 return;
             }
-            res.render('order/OrderDatabase', { order });
+            res.render('adminorder/OrderDatabase', { order });
         })
         .catch(err => console.log(err));
 });
@@ -51,7 +51,7 @@ router.post('/editadminOrder/:id', ensureAuthenticated, (req, res) => {
     )
         .then((result) => {
             console.log(result[0] + ' Order updated');
-            res.redirect('/order/OrderDatabase');
+            res.redirect('/adminOrder/OrderDatabase');
         })
         .catch(err => console.log(err));
 });
@@ -62,17 +62,17 @@ router.get('/deleteadminOrder/:id', ensureAuthenticated, async function
         let order = await Order.findByPk(req.params.id);
         if (!order) {
             flashMessage(res, 'error', 'Order not found');
-            res.redirect('/order/OrderDatabase');
+            res.redirect('/adminOrder/OrderDatabase');
             return;
         }
         if (req.user.id != order.userId) {
             flashMessage(res, 'error', 'Unauthorised access');
-            res.redirect('/order/OrderDatabase');
+            res.redirect('/adminOrder/OrderDatabase');
             return;
         }
         let result = await Order.destroy({ where: { id: order.id } });
         console.log(result + ' Order deleted');
-        res.redirect('/order/OrderDatabase');
+        res.redirect('/adminOrder/OrderDatabase');
     }
     catch (err) {
         console.log(err);
